@@ -107,6 +107,7 @@ awx-beelink-b94f6dfbb-lr8jc                        4/4     Running   0          
 ```
 
 Create AWX
+vi awx.yml
 ```
 ---
 apiVersion: awx.ansible.com/v1beta1
@@ -118,6 +119,42 @@ spec:
   # default nodeport_port is 30080
   nodeport_port: 30080
 ```
+Add the above awx.yml file to original kustomization.yaml
+```
+resources:
+  - github.com/ansible/awx-operator/config/default?ref=<tag>
+  # Add this extra line:
+  - awx.yml
+```
+
+Create the new AWX
+```
+./kustomize build . | kubectl apply -f -
+```
+
+Creation takes sometie view
+```
+kubectl logs -f deployments/awx-operator-controller-manager -c awx-manager
+```
+```
+kubectl get pods -l "app.kubernetes.io/managed-by=awx-operator"
+
+NAME                          READY   STATUS    RESTARTS   AGE
+awx-beelink-postgres-13-0     1/1     Running   0          7m45s
+awx-beelink-b94f6dfbb-lr8jc   4/4     Running   0          7m16s
+
+```
+
+> SECURITY
+Get the admin password and change
+```
+kubectl get secret awx-demo-admin-password -o jsonpath="{.data.password}" | base64 --decode
+yDL2Cx5Za94g9MvBP6B73nzVLlmfgPjR
+```
+
+
+
+
 
 
 
