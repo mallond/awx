@@ -64,6 +64,25 @@ Enable Add-Ons
 microk8s enable storage dns ingress
 ```
 
+## Docker Install
+```
+docker run -d --name awx --restart=always -p 8043:8043 -p 8052:8052 quay.io/ansible/awx
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## AWX
 
