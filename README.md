@@ -96,6 +96,23 @@ Set our Context
 ```
 kubectl config set-context --current --namespace=awx
 ```
+Verify
+```
+kubectl get pods -n awx
+```
+
+Create AWX
+```
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx-beelink
+spec:
+  service_type: nodeport
+  # default nodeport_port is 30080
+  nodeport_port: 30080
+```
 
 
 
