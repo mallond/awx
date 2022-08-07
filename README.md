@@ -21,6 +21,10 @@ Wifi 6.0
 
 OS
 ``
+NAME="Fedora Linux"
+VERSION="36 (Workstation Edition)"
+ID=fedora
+VERSION_ID=36
 ``
 
 ## Microk8s
