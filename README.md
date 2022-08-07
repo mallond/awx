@@ -64,6 +64,22 @@ Enable Add-Ons
 microk8s enable storage dns ingress
 ```
 
+---
+# AWX Operator Install - The prefered way for K8S
+https://github.com/ansible/awx-operator
+
+Do THIS
+
+
+
+
+
+
+
+
+
+-----
+
 ## Docker Install
 ```
 docker run -d --name awx --restart=always -p 8043:8043 -p 8052:8052 quay.io/ansible/awx
@@ -87,15 +103,17 @@ resources:
 images:
   - name: quay.io/ansible/awx-operator
     newTag: 0.26.0
+```
 
 # Specify a custom namespace in which to install AWX
 namespace: awx
+
 ```
 kubectl get pods -n awx
 NAME                                               READY   STATUS    RESTARTS   AGE
 awx-operator-controller-manager-7f89bd5797-fkpsp   2/2     Running   0          2m2s
 ```
-```
+
 ```
 ./kustomize build . | kubectl apply -f -
 namespace/awx
