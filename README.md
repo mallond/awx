@@ -69,10 +69,43 @@ microk8s enable storage dns ingress
 docker run -d --name awx --restart=always -p 8043:8043 -p 8052:8052 quay.io/ansible/awx
 ```
 
+# Install Kustomize
+```
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+```
+
+# AWX Operator
+vi kuxtomize.yml
+```
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # Find the latest tag here: https://github.com/ansible/awx-operator/releases
+  - github.com/ansible/awx-operator/config/default?ref=0.26.0
+
+# Set the image tags to match the git version from above
+images:
+  - name: quay.io/ansible/awx-operator
+    newTag: 0.26.0
+
+# Specify a custom namespace in which to install AWX
+namespace: awx
+```
+kubectl get pods -n awx
+NAME                                               READY   STATUS    RESTARTS   AGE
+awx-operator-controller-manager-7f89bd5797-fkpsp   2/2     Running   0          2m2s
+```
+```
+```
+./kustomize build . | kubectl apply -f -
+namespace/awx
+```
 
 
-
-
+# AWX CLI
+```
+pip3 install awxkit
+```
 
 
 
