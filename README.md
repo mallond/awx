@@ -67,6 +67,8 @@ microk8s enable storage dns ingress
 
 ## AWX
 
+> Important note: Please read install.md, as Google can waste your time if you get a wrong instructions
+
 Setup AWX Operator
 ```
 git clone https://github.com/ansible/awx-operator.git
@@ -109,6 +111,24 @@ spec:
 ```
 kubectl apply -f my-awx.yml -n ansible-awx
 ```
+Verify 
+```
+kubectl get awx -n ansible-awx
 
-
+```
+vi my-awx-ingress.yml
+```
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx-demo
+spec:
+  service_type: nodeport
+  ingress_type: ingress
+  hostname: awx.test.me
+```
+```
+kubectl apply -f my-awx-ingress.yml
+```
 
