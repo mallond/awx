@@ -54,6 +54,11 @@ sudo chown -f -R $USER ~/.kube
 exit
 ```
 
+Set up user .kube/config file
+```
+kubectl config view --raw > ~/.kube/config
+```
+
 Enable Add-Ons
 ```
 microk8s enable storage dns ingress
