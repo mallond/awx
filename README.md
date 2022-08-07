@@ -19,6 +19,10 @@ Hard Disk Description	HDD, 500GB Solid State Hard Drive
 Wifi 6.0  
 ```
 
+OS
+``
+``
+
 ## Microk8s
 
 Reset
