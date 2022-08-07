@@ -132,7 +132,7 @@ Create the new AWX
 ./kustomize build . | kubectl apply -f -
 ```
 
-Creation takes sometie view
+Creation takes sometime view
 ```
 kubectl logs -f deployments/awx-operator-controller-manager -c awx-manager
 ```
