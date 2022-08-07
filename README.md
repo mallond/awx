@@ -63,10 +63,43 @@ microk8s enable storage dns ingress
 ```
 
 ---
-# AWX Operator Install - The prefered way for K8S
-https://github.com/ansible/awx-operator
 
-Do THIS
+# AWX Operator Install - The prefered way for K8S. 
+Aug 7, 2022
+
+This is the prefered way to install AWX. As AWX is a Kubernettes application.
+[Basic Install Instructions](https://github.com/ansible/awx-operator#basic-install)
+
+Install Kustomization
+```
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+```
+Create Kustomization.yml
+```
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # Find the latest tag here: https://github.com/ansible/awx-operator/releases
+  - github.com/ansible/awx-operator/config/default?ref=0.26.0
+  - awx.yml
+# Set the image tags to match the git version from above
+images:
+  - name: quay.io/ansible/awx-operator
+    newTag: 0.26.0
+```
+Execute Kustomization
+```
+./kustomize build . | kubectl apply -f -
+namespace/awx
+```
+Set our Context
+```
+kubectl config set-context --current --namespace=awx
+```
+
+
+
+
 
 
 
