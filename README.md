@@ -7,6 +7,17 @@
 sudo systemctl status ufw.service
 sudo systemctl status sshd.service
 ```
+Baremetal Machine
+```
+Series	GTR5  
+Ram Memory Installed Size	32GB  
+Operating System Fedora Linux  
+CPU Model	Ryzen 9 4.6GHz  
+CPU Manufacturer AMD  
+Human Interface Input	Mouse, Keyboard  
+Hard Disk Description	HDD, 500GB Solid State Hard Drive 
+Wifi 6.0  
+```
 
 ## Microk8s
 
