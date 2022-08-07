@@ -23,6 +23,9 @@ Install
 sudo snap install microk8s --classic --channel=1.24/stable
 ```
 ```
+sudo snap alias microk8s.kubectl kubectl
+```
+```
 sudo usermod -a -G microk8s $USER
 ```
 ```
@@ -39,5 +42,46 @@ microk8s enable storage dns ingress
 
 
 ## AWX
+
+Setup AWX Operator
+```
+git clone https://github.com/ansible/awx-operator.git
+cd awx-operator
+```
+Find the Branch 
+[AWX Operator Release](https://github.com/ansible/awx-operator/releases)
+
+Create namespace
+```
+kubectl create namespace ansible-awx
+```
+
+Change your branch (what you selected), create namespace and make the deploy
+```
+git checkout 0.26.0
+export NAMESPACE=ansible-awx
+sudo make deploy
+```
+Verify Operator Created
+```
+kubectl get pods -n awx
+```
+
+Deploy AWX
+```
+
+vi my-awx.yml
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx-demo
+spec:
+  service_type: nodeport
+```
+```
+kubectl apply -f my-awx.yml -n ansible-awx
+```
+
 
 
