@@ -48,16 +48,16 @@ sudo snap alias microk8s.kubectl kubectl
 sudo usermod -a -G microk8s $USER
 ```
 ```
+kubectl config view --raw > ~/.kube/config
+```
+```
 sudo chown -f -R $USER ~/.kube
 ```
 ```
 exit
 ```
 
-Set up user .kube/config file
-```
-kubectl config view --raw > ~/.kube/config
-```
+
 
 Enable Add-Ons
 ```
