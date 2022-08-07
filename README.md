@@ -99,6 +99,11 @@ kubectl config set-context --current --namespace=awx
 Verify
 ```
 kubectl get pods -n awx
+
+NAME                                               READY   STATUS    RESTARTS   AGE
+awx-operator-controller-manager-7f89bd5797-q9s85   2/2     Running   0          2m39s
+awx-beelink-postgres-13-0                          1/1     Running   0          2m5s
+awx-beelink-b94f6dfbb-lr8jc                        4/4     Running   0          96s
 ```
 
 Create AWX
