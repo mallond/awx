@@ -73,12 +73,15 @@ Find the Branch
 Create namespace
 ```
 kubectl create namespace ansible-awx
+export NAMESPACE=ansible-awx
 ```
+> Important: export NAMESPACE=ansible-awx To be used in the rest of these steps
+
+
 
 Change your branch (what you selected), create namespace and make the deploy
 ```
 git checkout 0.26.0
-export NAMESPACE=ansible-awx
 sudo make deploy
 ```
 Verify Operator Created
